@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="mediumMargin">25dp</dimen>
+    <dimen name="floatingActionButtonMargin">16dp</dimen>
+    <dimen name="largeMargin">40dp</dimen>
+    <dimen name="smallMargin">11dp</dimen>
+    <dimen name="tweetMarginExtraSmall">5dp</dimen>
+    <dimen name="tweetMarginSmall">15dp</dimen>
+
+</resources>

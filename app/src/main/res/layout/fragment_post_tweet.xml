@@ -1,0 +1,82 @@
+<!-- fragment_edit_name.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/post_tweet"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/largeMargin"
+    android:layout_marginRight="@dimen/largeMargin">
+
+    <ImageView
+        android:id="@+id/ivMyAccountProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ivMyAccountClose"
+        android:layout_marginEnd="@dimen/mediumMargin"
+        app:srcCompat="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvMyAccountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivMyAccountProfileImage"
+        android:layout_marginEnd="@dimen/smallMargin"
+        android:layout_toStartOf="@+id/ivMyAccountProfileImage"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/tvMyAccountScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvMyAccountName"
+        android:layout_below="@+id/tvMyAccountName"
+        android:text="@string/screenName" />
+
+    <ImageView
+        android:id="@+id/ivMyAccountClose"
+        android:layout_width="@dimen/largeMargin"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/mediumMargin"
+        android:layout_marginTop="@dimen/mediumMargin"
+        app:srcCompat="@drawable/ic_close" />
+
+    <EditText
+        android:id="@+id/etMyAccountTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivMyAccountProfileImage"
+        android:layout_alignStart="@+id/ivMyAccountClose"
+        android:layout_below="@+id/ivMyAccountProfileImage"
+        android:layout_marginTop="@dimen/smallMargin"
+        android:ems="10"
+        android:hint="Write a Tweet"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:maxLength="140"
+        android:maxLines="4"
+        android:minLines="2" />
+
+    <Button
+        android:id="@+id/btnMyAccountTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etMyAccountTweet"
+        android:layout_alignTop="@+id/etMyAccountTweet"
+        android:layout_marginBottom="@dimen/mediumMargin"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/tweet"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/tvCharCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etMyAccountTweet"
+        android:layout_alignTop="@+id/btnMyAccountTweet"
+        android:text="0/140 characters" />
+
+</RelativeLayout>

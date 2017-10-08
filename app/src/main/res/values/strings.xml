@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Simple Twitter Client</string>
+    <string name="login_label">Log in</string>
+    <string name="intent_scheme">oauth</string>
+    <string name="intent_host">cprest</string>
+    <string name="tweet">Tweet</string>
+    <string name="name">name</string>
+    <string name="screenName">Screen Name</string>
+    <string name="body">Body</string>
+    <string name="time">Time</string>
+    <string name="fragmentPostTweet">fragment_post_tweet</string>
+    <string name="user">user</string>
+    <string name="text">text</string>
+    <string name="id">id</string>
+    <string name="createdAt">created_at</string>
+    <string name="screen_name">screen_name</string>
+    <string name="profile_image_url">profile_image_url</string>
+    <string name="count">count</string>
+    <string name="max_id">max_id</string>
+    <string name="skip_status">skip_status</string>
+    <string name="status">status</string>
+    <string name="trueValue">true</string>
+    <string name="tagline">This is an example tagline. This is an example tagline. This is an example tagline. This is an example tagline. </string>
+
+</resources>
