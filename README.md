@@ -38,6 +38,15 @@ The following **bonus** features are implemented:
 
 * [x] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).
 
+The following **additional** features are implemented:
+
+* [x] User can **see a counter with total number of characters left for tweet** on compose tweet page
+* [x] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
+* [x] User can **pull down to refresh tweets timeline**
+* [x] Compose tweet functionality is build using modal overlay
+* [x] [Leverage RecyclerView](http://guides.codepath.com/android/Using-the-RecyclerView) as a replacement for the ListView and ArrayAdapter for all lists of tweets.
+* [x] Replace Picasso with [Glide](http://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en) for more efficient image rendering.
+
 
 ## Video Walkthrough
 
