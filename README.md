@@ -30,6 +30,10 @@ The following **required** functionality is completed:
  * [x] Profile view includes that user's timeline
 * [x] User can [infinitely paginate](http://guides.codepath.com/android/Endless-Scrolling-with-AdapterViews-and-RecyclerView) any of these timelines (home, mentions, user) by scrolling to the bottom
 
+The following **optional** features are implemented:
+
+* [x] Usernames and hashtags are styled and clickable within tweets [using clickable spans](http://guides.codepath.com/android/Working-with-the-TextView#creating-clickable-styled-spans)
+
 The following **bonus** features are implemented:
 
 * [x] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.com/android/Using-Parceler).

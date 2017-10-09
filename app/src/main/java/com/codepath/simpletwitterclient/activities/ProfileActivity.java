@@ -1,5 +1,6 @@
 package com.codepath.simpletwitterclient.activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +17,14 @@ import com.codepath.simpletwitterclient.models.User;
 import com.codepath.simpletwitterclient.network.TwitterClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import cz.msebera.android.httpclient.Header;
 
+import static com.codepath.apps.restclienttemplate.R.string.screenName;
 import static com.codepath.apps.restclienttemplate.R.string.user;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -44,12 +47,20 @@ public class ProfileActivity extends AppCompatActivity {
 
         client = TwitterApp.getRestClient();
 
-        user = (User) Parcels.unwrap(getIntent().getParcelableExtra("user"));
+        Intent intent = getIntent();
 
         String screenName = null;
+
+        if (intent.hasExtra("user")) {
+            user = (User) Parcels.unwrap(intent.getParcelableExtra("user"));
+        } else if (intent.hasExtra("screen_name")) {
+            screenName = intent.getStringExtra("screen_name");
+        }
+
         if (user != null) {
             screenName = user.screenName;
         }
+
         //create the user fragment
         UserTimelineFragment userTimelineFragment = UserTimelineFragment.newInstance(screenName);
 
@@ -61,32 +72,42 @@ public class ProfileActivity extends AppCompatActivity {
         //commit
         ft.commit();
 
-        if (user == null) {
+        if (user == null && screenName == null) {
             getUserInfo();
-        } else {
-            Log.d("ProfileActivity", "not the user's profile");
+        } else if (user != null) {
             populateUserHeadline(user);
+        } else {
+            getUserInfo(screenName);
         }
-        Log.d("ProfileActivity", "The title is now 2:  " + toolbar.getTitle().toString());
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (user != null) {
-            toolbar.setTitle("@" + user.screenName);
-        }
-
-    }
 
     private void getUserInfo() {
         client.getUserInformation(new JsonHttpResponseHandler() {
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //deserialize the user object
-
                 try {
                     User user = User.fromJson(response);
+                    //update the title of the actionbar
+                    populateUserHeadline(user);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+    }
+
+    private void getUserInfo(String screenName) {
+        client.getUserInformation(screenName, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+
+                try {
+                    JSONObject jsonObject= (JSONObject) response.get(0);
+                    User user = User.fromJson(jsonObject);
                     //update the title of the actionbar
                     populateUserHeadline(user);
                 } catch (JSONException e) {
@@ -110,6 +131,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         Glide.with(this).load(user.profileImageUrl).into(ivProfileImage);
 
-        toolbar.setTitle("@" + user.screenName);
+        getSupportActionBar().setTitle("@" + user.screenName);
     }
 }

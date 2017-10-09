@@ -8,4 +8,5 @@ import com.codepath.simpletwitterclient.models.Tweet;
 
 public interface TweetSelectedListener {
     void onProfileSelected(Tweet tweet);
+    void onScreenNameSelected(String screenName);
 }

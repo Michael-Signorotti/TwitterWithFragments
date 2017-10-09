@@ -1,6 +1,7 @@
 package com.codepath.simpletwitterclient.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,13 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.simpletwitterclient.interfaces.TweetAdapterListener;
 import com.codepath.simpletwitterclient.models.Tweet;
+import com.codepath.simpletwitterclient.utils.PatternEditableBuilder;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by michaelsignorotti on 9/30/17.
@@ -62,6 +66,27 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                 .load(tweet.user.profileImageUrl)
                 .into(holder.ivProfileImage);
 
+        new PatternEditableBuilder().
+                addPattern(Pattern.compile("\\@(\\w+)"), Color.BLUE,
+                        new PatternEditableBuilder.SpannableClickedListener() {
+                            @Override
+                            public void onSpanClicked(String screenName) {
+                                if (listener != null) {
+                                    screenName = screenName.replace("@", "");
+                                    listener.onScreenNameSelected(screenName);
+                                }
+                            }
+                        }).into(holder.tvBody);
+
+        new PatternEditableBuilder().
+                addPattern(Pattern.compile("\\#(\\w+)"), Color.BLUE,
+                        new PatternEditableBuilder.SpannableClickedListener() {
+                            @Override
+                            public void onSpanClicked(String screenName) {
+                                //TODO
+                            }
+                        }).into(holder.tvBody);
+
     }
 
     @Override
@@ -90,17 +115,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvRelativeTimestamp = (TextView) itemView.findViewById(R.id.tvRelativeTimestamp);
             tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
 
-            if (!listener.getClass().toString().contains("UserTimelineFragment")) {
-                ivProfileImage.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (listener != null) {
-                            int position = getAdapterPosition();
-                            listener.onItemSelected(view, position);
-                        }
+            ivProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        listener.onItemSelected(view, position);
                     }
-                });
-            }
+                }
+            });
         }
     }
 }

@@ -46,6 +46,7 @@ import static android.R.attr.id;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static com.codepath.apps.restclienttemplate.R.id.rvTweets;
 import static com.codepath.apps.restclienttemplate.R.id.swipeContainer;
+import static com.codepath.apps.restclienttemplate.R.string.tweet;
 import static com.codepath.apps.restclienttemplate.R.string.user;
 
 public class TimelineActivity extends AppCompatActivity implements PostTweetDialogListener, TweetSelectedListener {
@@ -132,5 +133,12 @@ public class TimelineActivity extends AppCompatActivity implements PostTweetDial
         i.putExtra("user", Parcels.wrap(tweet.user));
         startActivity(i);
 
+    }
+
+    @Override
+    public void onScreenNameSelected(String screenName) {
+        Intent i = new Intent(this, ProfileActivity.class);
+        i.putExtra("screen_name", screenName);
+        startActivity(i);
     }
 }

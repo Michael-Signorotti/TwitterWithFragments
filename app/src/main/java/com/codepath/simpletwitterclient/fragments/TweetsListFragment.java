@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.simpletwitterclient.adapters.TweetAdapter;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+
+import static com.codepath.apps.restclienttemplate.R.string.tweet;
 
 /**
  * Created by michaelsignorotti on 10/7/17.
@@ -66,9 +69,10 @@ public abstract class TweetsListFragment extends Fragment implements TweetAdapte
         tweetAdapter = new TweetAdapter(tweets, this);
         linearLayoutManager = new LinearLayoutManager(getContext());
         rvTweets.setLayoutManager(linearLayoutManager);
+
+
         //set the adapter
         rvTweets.setAdapter(tweetAdapter);
-        Log.d("TweetsListFragment", "set the adapter");
 
         //set the initial maxId for tweets.
         //minTweetId = Long.MAX_VALUE;
@@ -134,5 +138,10 @@ public abstract class TweetsListFragment extends Fragment implements TweetAdapte
         Tweet tweet = tweets.get(position);
 
         ((TweetSelectedListener) getActivity()).onProfileSelected(tweet);
+    }
+
+    @Override
+    public void onScreenNameSelected(String screenName) {
+        ((TweetSelectedListener) getActivity()).onScreenNameSelected(screenName);
     }
 }

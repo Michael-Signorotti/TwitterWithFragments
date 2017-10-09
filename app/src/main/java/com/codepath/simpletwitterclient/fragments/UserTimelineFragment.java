@@ -3,6 +3,7 @@ package com.codepath.simpletwitterclient.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.simpletwitterclient.application.TwitterApp;
 import com.codepath.simpletwitterclient.models.Tweet;
@@ -114,11 +115,6 @@ public class UserTimelineFragment extends TweetsListFragment {
         });
     }
 
-    public void addMyTweet(Tweet tweet) {
-        tweets.add(0, tweet);
-        tweetAdapter.notifyItemInserted(0);
-
-    }
 
     public void updateTweets(JSONArray response) {
         try {
@@ -142,5 +138,10 @@ public class UserTimelineFragment extends TweetsListFragment {
                 minTweetId = id;
             }
         }
+    }
+
+    @Override
+    public void onItemSelected(View view, int position) {
+
     }
 }

@@ -8,4 +8,5 @@ import android.view.View;
 
 public interface TweetAdapterListener {
     void onItemSelected(View view, int position);
+    void onScreenNameSelected(String screenName);
 }
